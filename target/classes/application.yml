@@ -24,7 +24,7 @@ spring:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
       bindings:
         event-in:
-          group: RoomInfo
+          group: Notice
           destination: hotelmanage
           contentType: application/json
         event-out:
@@ -56,7 +56,7 @@ spring:
                   serde: org.apache.kafka.common.serialization.Serdes$StringSerde
       bindings:
         event-in:
-          group: RoomInfo
+          group: Notice
           destination: hotelmanagement
           contentType: application/json
         event-out:

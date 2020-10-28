@@ -8,6 +8,7 @@ public class Reserved extends AbstractEvent {
     private String reserveStatus;
     private Integer roomNo;
     private Integer ReservePrice;
+
     public Reserved(){
         super();
     }

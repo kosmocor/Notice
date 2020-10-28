@@ -58,4 +58,14 @@ public class PolicyHandler{
             System.out.println("##### ");
         }
     }
+
+    @StreamListener(KafkaProcessor.INPUT)
+    public void wheneverSave_Delivery(@Payload DeliveryCompleted deliveryCompleted) {
+        if (deliveryCompleted.isMe()) {
+            // external message send
+            System.out.println("##### ");
+            System.out.println("##### external message send (deliveryCompleted) : " + deliveryCompleted.toJson());
+            System.out.println("##### ");
+        }
+    }
 }
