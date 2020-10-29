@@ -30,6 +30,23 @@ public class PolicyHandler{
     }
 
     @StreamListener(KafkaProcessor.INPUT)
+    public void wheneverSave_DeliveryInfo(@Payload DeliveryCompleted deliveryCompleted){
+        if(deliveryCompleted.isMe()){
+            System.out.println("##### listener 배송정보 수신 : " + deliveryCompleted.toJson());
+            RoomInfo roomInfo = new RoomInfo();
+            roomInfo.setReserveNo(deliveryCompleted.getReservationNumber());
+            roomInfo.setCustomerId(deliveryCompleted.getCustomerId());
+
+            roomInfoRepository.save(roomInfo);
+
+            // external message send
+            System.out.println("##### ");
+            System.out.println("##### external message send (deliveryCompleted) : " + deliveryCompleted.toJson());
+            System.out.println("##### ");
+        }
+    }
+
+    @StreamListener(KafkaProcessor.INPUT)
     public void wheneverSave_CheckOuted(@Payload CheckedOut checkedOut){
         if(checkedOut.isMe()){
             // external message send
